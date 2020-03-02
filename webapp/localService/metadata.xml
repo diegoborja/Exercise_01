@@ -1,0 +1,41 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZFPM_XX_E01_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Header" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/></Key><Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HeaderNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CreatedOn" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time Stamp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ChangedOn" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time Stamp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="to_Items" Relationship="ZFPM_XX_E01_SRV.HeaderItemsAssoc" FromRole="FromRole_HeaderItemsAssoc"
+					ToRole="ToRole_HeaderItemsAssoc"/></EntityType>
+			<EntityType Name="Item" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/></Key><Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ParentGuid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ItemNumber" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:unit="UnitOfMeasure"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Amount" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="2" sap:unicode="false" sap:unit="Currency"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CreatedOn" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time Stamp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ChangedOn" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Time Stamp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="HeaderItemsAssoc" sap:content-version="1"><End Type="ZFPM_XX_E01_SRV.Header" Multiplicity="1" Role="FromRole_HeaderItemsAssoc"/><End Type="ZFPM_XX_E01_SRV.Item" Multiplicity="*" Role="ToRole_HeaderItemsAssoc"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_HeaderItemsAssoc"><PropertyRef Name="Guid"/></Principal>
+					<Dependent Role="ToRole_HeaderItemsAssoc"><PropertyRef Name="ParentGuid"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZFPM_XX_E01_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Headers" EntityType="ZFPM_XX_E01_SRV.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Items" EntityType="ZFPM_XX_E01_SRV.Item" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="HeaderItemsAssocSet" Association="ZFPM_XX_E01_SRV.HeaderItemsAssoc" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="Headers" Role="FromRole_HeaderItemsAssoc"/><End EntitySet="Items" Role="ToRole_HeaderItemsAssoc"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZFPM_XX_E01_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZFPM_XX_E01_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
