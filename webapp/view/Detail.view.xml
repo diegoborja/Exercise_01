@@ -37,23 +37,28 @@
 				</headerToolbar>
 				<columns>
 					<Column>
-						<Text text="{i18n>detailLineItemTableIDColumn}"/>
+						<Text text="Item Number"/>
 					</Column>
 					<Column
 						minScreenWidth="Tablet"
 						demandPopin="true"
 						hAlign="End">
-						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+						<Text text="Quantity"/>
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="Amount"/>
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-								title="{ItemNumber}"
-								text="{Guid}"/>
-							<ObjectNumber
-/>
+								title="{ItemNumber}"/>
+							<ObjectNumber number="{Quantity}" unit="{UnitOfMeasure}"/>
+							<ObjectNumber number="{Amount}" unit="{Currency}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

@@ -64,7 +64,7 @@
 						type="Navigation"
 						press=".onSelectionChange"
 						title="{HeaderNumber}"
->
+						number="{Description}">
 					</ObjectListItem>
 				</items>
 			</List>
